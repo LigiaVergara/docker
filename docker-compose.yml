@@ -1,0 +1,14 @@
+services:
+  redis:
+    image: redislabs/redismod
+    ports:
+      - '6379:6379'
+  web:
+    build: .
+    stop_signal: SIGINT
+    ports:
+      - '4000:80'
+    volumes:
+      - ./app:/app
+    depends_on:
+      - redis
