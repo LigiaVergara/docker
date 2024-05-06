@@ -6,17 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My first dynamic Website</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <img src="{{ url_for('static' , filename='Background.jpg') }}" alt="Example Image" width="100%" height="auto" style="float: center;">
+    <style>
+        nav {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: gray;
+        }
+        
+        nav li {
+          float: left;
+        }
+        
+        nav li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        nav li a:hover {
+          background-color: gray;
+        }
+        nav .active {
+            background-color: rgba(255, 0, 0, 0.782);
+            }
+        </style>
+   
 </head>
 
 <body>
     <main>
+        <nav>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/Titanic">Titanic</a></li>
+            <li style="float:right"><a href="https://github.com/LigiaVergara/docker">About</a></li>
+        </nav>
         <h1>I have been seen {{ count }} times.</h1>
         <ul>
             {% for i in range(1, count+1) %}
             <li>{{ i }}: Hello {{ name }}! </li>
             {% endfor %}
+            <a class="button" style="background-color: red; color: white;" href="http://hwr-berlin.de">HWR Berlin</a>
         </ul>
     </main>
+    <footer>
+        <p>Ligia's website.</p>
+      </footer>
 </body>
-
 </html>
