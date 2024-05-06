@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #333; /* Custom background color */
+    padding: 10px 0; /* Custom padding */
+    display: flex;
+    text-align: center; /* Center align navigation items */
+}
+
+.nav-item {
+    color: #fff; /* Text color of navigation items */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Display navigation items in the same line */
+    margin: 0 10px; /* Add spacing between navigation items */
+}
+

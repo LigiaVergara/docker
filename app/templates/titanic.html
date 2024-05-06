@@ -1,0 +1,126 @@
+<!-- titanic.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Titanic Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <img src="{{ url_for('static' , filename='Background.jpg') }}" alt="Example Image" width="100%" height="auto" style="float: center;">
+    <style>
+        nav {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: gray;
+        }
+        
+        nav li {
+          float: left;
+        }
+        
+        nav li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        nav li a:hover {
+          background-color: gray;
+        }
+        nav .active {
+            background-color: rgba(255, 0, 0, 0.782);
+            }
+            table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 6px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+    max-height: 50px; /* Set maximum height for cells */
+    overflow: auto; 
+    white-space: nowrap;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+        </style>
+</head>
+<body>
+    <main>
+        <nav>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/Titanic">Titanic</a></li>
+            <li style="float:right"><a href="https://github.com/LigiaVergara/docker">About</a></li>
+        </nav>
+        <section>
+            <h2>Titanic Data Table</h2>
+            <div style="overflow-x: auto;">
+                <table>
+                    {{ table | safe }}
+                </table>
+            </div>
+        </section>
+        <div>
+            <h2>Survivors by Sex</h2>
+            <canvas id="survivorsChart" width="400" height="200"></canvas>
+        </div>
+        
+        <script>
+            var ctx = document.getElementById('survivorsChart').getContext('2d');
+            var survivorsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ bar_labels | tojson }},
+                    datasets: [{
+                        label: 'Survivors',
+                        data: {{ bar_data | tojson }},
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 99, 132, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    </main>
+    <footer>
+        <p>Ligia's website.</p>
+      </footer>
+    
+</body>
+</html>
