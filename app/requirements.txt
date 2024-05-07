@@ -2,4 +2,3 @@ Flask
 Redis
 python-dotenv
 pandas
-json
